@@ -1,14 +1,20 @@
+89
+/*  */
 body{
     height: 100vh;
-    width: 10vw !important;
+    width: 90vw !important;
+    position: relative;
+
 }
 #container{
     width: 500px;
+    left: 30%;
+    top: 10%;
     height: 400px;
     background-color: #eee;
     border: 1px solid #333;
     margin: 0 auto;
-    position: relative;
+    position: absolute;
   }
   
   .ball {
@@ -18,7 +24,24 @@ body{
     border-radius: 50%;
     position: absolute;
   }
-  
+  .gameRestart{
+      display: none;
+      position: absolute;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color:#fff;
+      width: fit-content;
+      padding: 10px;
+      background-color:rgb(94, 200, 94);
+      top: 76%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+  }
   .seat{
     width: 80px;
     height: 10px;

@@ -1,20 +1,22 @@
 // Select game elements
-var ball = document.querySelector('.ball');
-var seat = document.querySelector('.seat');
-var bricks = document.querySelectorAll('.brick');
+let ball = document.querySelector('.ball');
+let seat = document.querySelector('.seat');
+let bricks = document.querySelectorAll('.brick');
+let restartBtn = document.getElementsByClassName('gameRestart')
+[0];
 
 // Set initial ball position
-var ballX = parseInt(20);
-var ballY = 300;
+let ballX = parseInt(20);
+let ballY = 300;
 ball.style.left = ballX + 'px';
 ball.style.top = ballY + 'px';
 
 // Set initial ball direction
-var dx = 5; //horizontal
-var dy = -5; //vertical
+let dx = 5; //horizontal
+let dy = -5; //vertical
 
 // Move the ball
-var isGameOver ;
+let isGameOver;
 let gamewin = document.querySelector('.gameWinBox');
 gamewin.style.display = 'none'
 let gameover = document.querySelector('.gameOver');
@@ -42,11 +44,13 @@ function moveBall() {
     }
 
     // Check for collision with bricks
-    for (var i = 0; i < bricks.length; i++) {
+    for (let i = 0; i < bricks.length; i++) {
       if (ballY <= bricks[i].offsetTop + 20 && ballX + 20 >= bricks[i].offsetLeft && ballX <= bricks[i].offsetLeft + 50) {
         dy = -dy;
+        
         bricks[i].style.display = 'none';
         bricks[i].classList.remove('brick');
+
       }
     }
 
@@ -54,6 +58,7 @@ function moveBall() {
     if (ballY + 20 >= 420) {
       gameover.style.display = 'block'
       ball.style.display = 'none'
+      restartBtn.style.display='block'
       isGameOver = true;
     }
 
@@ -62,14 +67,15 @@ function moveBall() {
     if (document.getElementsByClassName('brick').length === 0) {
       gamewin.style.display = 'block'
       ball.style.display = 'none'
-      //document.write("You win!");
+      seat.style.display = "none"
       isGameOver = true;
-    }
+      restartBtn.style.display='block';
+        }
   }
 }
 // Move the seat
 function movePaddle(event) {
-  var left = event.clientX - 40;
+  let left = event.clientX -40;
   if (left <= 0) {
     left = 0;
   } else if (left >= 420) {
@@ -80,7 +86,9 @@ function movePaddle(event) {
 
 // Start the game loop
 setInterval(moveBall, 30);
-
+restartBtn.addEventListener('click', function () {
+  location.reload();
+});
 // Move the seat on mouse move
 document.addEventListener('mousemove', movePaddle);
 
